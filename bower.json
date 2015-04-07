@@ -1,0 +1,9 @@
+{
+  "name": "gliss",
+  "version": "v0.0.0",
+  "main": "stylesheets/_gliss.scss",
+  "ignore": [
+    "lib",
+    "test-compass"
+  ]
+}

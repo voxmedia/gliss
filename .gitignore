@@ -1,0 +1,4 @@
+.bundle/*
+.sass-cache
+*.css
+*.gem

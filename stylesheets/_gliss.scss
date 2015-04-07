@@ -1,0 +1,23 @@
+// Max width of content container. This must be a fixed width (em or px)
+$max-width:         80em      !default;
+// Gutter width, must be same units as $max-width.
+$gutter:            1em       !default;
+// Margins on either side of the content container.
+$margin:            4%        !default;
+// Number of columns the grid is divided into.
+$cols:              12        !default;
+
+// Chose to write gliss classes.
+// By default, only the math tools are avalible.
+// This does a lot of the other work for you.
+$gliss-modules:    false     !default;
+
+// Choose what classes to write for your elements:
+$gliss-wrapper:    'article' !default;
+$gliss-text:       '.text'   !default;
+$gliss-figure:     'figure'  !default;
+
+
+@import
+  'gliss/core',
+  'gliss/modules';

@@ -1,0 +1,105 @@
+// Max width of content container. This must be a fixed width (em or px)
+$max-width:         80rem;
+// Gutter width, must be same units as $max-width.
+$gutter:            1rem;
+// Margins on either side of the content container.
+$margin:            4%;
+// Number of columns the grid is divided into.
+$cols:              12;
+
+// Chose to write gliss classes.
+$gliss-modules:    true;
+// Choose what classes to write for your elements:
+$gliss-wrapper:    'section';
+$gliss-text:       '.text';
+$gliss-figure:     'figure';
+
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:600,300,400');
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+body,
+section,
+article,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+}
+
+@import 'gliss';
+
+.lede {
+  color: white;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  padding: 16% 5vw;
+  text-shadow: 0 .1em .6em rgba(#000,.6);
+  margin-bottom: 2em;
+  line-height: 1.1;
+  h1 {
+    font-weight: 600;
+    font-size: 10vw;
+  }
+  h2 {
+    font-weight: 300;
+    font-size: 5vw;
+    padding: 0 10%;
+    @media (min-width: 60em) {
+      font-size: 3em;
+    }
+  }
+}
+
+article {
+  padding-bottom: 40%;
+}
+
+a:link,
+a:visited {
+  color: #74A4D1;
+}
+a:hover,
+a:focus {
+  color: darken(#74A4D1,10%);
+}
+
+.grid {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: $margin;
+  right: $margin;
+  z-index: -1;
+}
+
+.grid-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0 0 0 50%;
+  transform: translateX(-50%);
+  max-width: $max-width;
+  div {
+    height: 100vh;
+    background-color: #FAFAFA;
+    width: calc(#{percentage(1/12)} - #{$gutter * 11 / 12});
+    float: left;
+    margin-left: $gutter;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

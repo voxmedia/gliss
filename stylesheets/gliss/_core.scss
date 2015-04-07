@@ -1,0 +1,97 @@
+// Non-configurable variables for internal use:
+
+// Find the width of the margins within the context of the container
+$margin-inv: (100% / (100 - $margin * 2) * $margin);
+
+
+// Upper limit for elements on the grid. This is a fixed width.
+@function grid-max(
+    $max:$max,
+    $cols:$cols,
+    $max-width:$max-width,
+    $gutter:$gutter
+  ) {
+
+  // Total width of the columns minus the gutters
+  $cols-max-width: $max-width - ($gutter * ($cols - 1));
+  // Find the max width of a simgle column as a fixed width.
+  $col-max-width: ($cols-max-width / $cols);
+
+  // All the columns plus gutters.
+  @return ($col-max-width * $max) + ($gutter * ($max - 1));
+}
+
+// The lower constraint, how small can this get?
+@function grid-min(
+    $min:$min,
+    $cols:$cols,
+    $max-width:$max-width,
+    $gutter:$gutter
+  ) {
+
+  // Make sure not to divide by zero.
+  @if $min < $cols {
+    @return calc(#{(100% / $cols) * $min} + #{$gutter * ($min - $cols) / ($cols)});
+  }
+  @return 100%;
+}
+
+@mixin grid(
+    $min:false,     // Lower limit (compiles to % constraint)
+    $max:false,     // Upper limit (compiles to fixed constraint)
+    $cols:$cols,
+    $max-width:$max-width,
+    $gutter:$gutter
+  ) {
+
+  // Write max width first as it is mapped to just width.
+  @if $max {
+    width: grid-max($max,$cols,$max-width,$gutter);
+  } @else {
+    // If unspecified, use 100% to ensure the min-width is fulled.
+    width: 100%;
+  }
+  // Write min width second.
+  // It may seem counter-intuitive that $min is mapped to
+  // max-width but it's because as the screen shrinks
+  // the elements will hit higher %s.
+  // This is the upper bounds on that % but on a smaller screen.
+  @if $min {
+    max-width: grid-min($min,$cols,$max-width,$gutter);
+  }
+}
+
+
+// Alignment
+
+// Center a thing
+@mixin grid-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Align right
+@mixin grid-right(
+    $offset:0
+  ) {
+
+  @if $offset != 0 {
+    $offset: calc(#{(100% / $cols) * $offset} + #{($gutter * ($offset - $cols) / ($cols)) + ($gutter)});
+  }
+
+  float: right;
+  margin: 0 $offset 0 $gutter;
+}
+
+// Align left
+@mixin grid-left(
+    $offset:0
+  ) {
+
+  @if $offset != 0 {
+    $offset: calc(#{(100% / $cols) * $offset} + #{($gutter * ($offset - $cols) / ($cols)) + ($gutter)});
+  }
+
+  float: left;
+  margin: 0 $gutter 0 $offset;
+}

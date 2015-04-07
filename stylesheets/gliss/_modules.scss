@@ -1,0 +1,58 @@
+@if $gliss-modules {
+  #{$gliss-wrapper} {
+    padding: 0 $margin;
+    margin: 0 auto;
+    max-width: $max-width;
+  }
+
+  // Text level elements
+  #{$gliss-text} {
+    @include grid-center();
+    @include grid(12,6);
+    body.show-grid & {
+      background: rgba(#f00,.1);
+    }
+  }
+
+  // figure logic
+  #{$gliss-figure} {
+    margin: 0 ($margin-inv * -1);
+    @media (min-width: ($max-width / 3)) {
+      &._quarter {
+        @include grid-right();
+        @include grid(6,3);
+        &._left {
+          @include grid-left();
+        }
+      }
+
+      &._third {
+        @include grid-right();
+        @include grid(6,4);
+        &._left {
+          @include grid-left();
+        }
+      }
+
+      &._half {
+        @include grid-right();
+        @include grid(6);
+        &._left {
+          @include grid-left();
+        }
+      }
+      &._hang {
+        margin: 0 ($margin-inv * -1) 0 0;
+        float: right;
+        width: calc(
+          (100% - #{grid-max(6)}) / 2 + #{$margin-inv} + #{grid-max(6)}
+        );
+        max-width: 100% + $margin-inv * 2;
+        &._left {
+          margin: 0 0 0 ($margin-inv * -1);
+          float: left;
+        }
+      }
+    }
+  }
+}
