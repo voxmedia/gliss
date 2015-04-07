@@ -17,7 +17,7 @@ Compass::Frameworks.register('gliss-layout', :path => extension_path)
 #  Date is in the form of YYYY-MM-DD
 module Gliss
   VERSION = "0.0.0"
-  DATE = "2015-4-6"
+  DATE = "2015-04-06"
 end
 
 # This is where any custom SassScript should be placed. The functions will be

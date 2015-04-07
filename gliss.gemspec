@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://product.voxmedia.com'
   s.license     = 'MIT'
 
-  s.summary     = 'gliss tk tk tk.'
-  s.description = 'gliss tk tk tk.'
+  s.summary     = 'A constraint based responsive grid system.'
+  s.description = 'Gliss is a system that uses max-width and width to allow elements to fall on different grids at different sizes instead of more traditional media queries. This allows elements to fluidly change their size instead of snapping to a new grid system at various breakpoints.'
 
   s.files       = Dir['lib/**/*'] + Dir['stylesheets/**/*']
   s.extra_rdoc_files = ['changelog.md', 'license.md', 'readme.md']
