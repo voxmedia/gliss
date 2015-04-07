@@ -1,7 +1,7 @@
 require './lib/gliss'
 
 Gem::Specification.new do |s|
-  s.name        = 'gliss'
+  s.name        = 'gliss-layout'
   s.version     = Gliss::VERSION
   s.date        = Gliss::DATE
   s.authors     = ['Scott Kellum']

@@ -1,22 +1,123 @@
-# Gliss article layout
+# Gliss
 
-Introduce the project briefly; say what it is and what it does and why you might want to use or contribute to it.
+Gliss is a constraint based layout system for articles. It uses the CSS properties `width` and `max-width` instead of media queries to change the layout at different viewport sizes. You can [see a demo here](http://gliss.pgdn.us/), and the [related source code](https://github.com/scottkellum/gliss/blob/master/test-compass/sass/style.scss).
 
 ## Getting started
 
-Brief and specific installation instructions; how would someone knowledgeable get up and running with this code as quickly as possible?
+### Install with Compass:
+
+In your terminal execute:
+
+```
+gem install gliss-layout
+```
+
+In your `config.rb` file write
+
+```
+require 'gliss'
+```
+
+And finally, import Gliss into your stylesheet
+
+```
+@import 'gliss';
+```
+
+### Install without Compass:
+
+Download the [latest release](https://github.com/scottkellum/gliss/releases).
+
+Unzip into your project and import Gliss into your stylesheet
+
+```
+@import 'gliss';
+```
 
 ## Documentation
 
-More detailed documentation, depending on the needs of the project. Could include: requirements/dependencies, a use case with code samples, options for customization, and more. Needn’t be exhaustive, but should be helpful to someone trying to figure things out.
+First, you are going to want to configure Gliss. Here are the main variables to define your grid:
 
-## Examples
+<table>
+<tr>
+<th>Variable</th><th>Default</th><th>Description</th></tr>
+<tr>
+<td>$max-width</td><td>80rem</td><td>Max width of content container. This must be a fixed width (em, rem or px)</td></tr>
+<tr>
+<td>$gutter</td><td>1rem</td><td>Gutter width, must be same units as $max-width.</td></tr>
+<tr>
+<td>$margin</td><td>4%</td><td>Margins on either side of the content container.</td></tr>
+<tr>
+<td>$cols</td><td>12</td><td>Number of columns the grid is divided into.</td></tr>
+</table>
 
-Examples of the code in action; include a note to encourage users to add their own examples.
+So far this just provides you with a basic toolset, but if you want to have something more out of the box to work with, set `$gliss-modules` to `true` and define these variables as needed:
+
+<table>
+<tr>
+<th>Variable</th><th>Default</th><th>Description</th></tr>
+<tr>
+<td>$gliss-modules</td><td>false</td><td>Generates default styles so you can get going with writing markup.</td></tr>
+<tr>
+<td>$gliss-wrapper</td><td>'article'</td><td>The wrapper for the entire article.</td></tr>
+<tr>
+<td>$gliss-text</td><td>'.text'</td><td>A block of text.</td></tr>
+<tr>
+<td>$gliss-figure</td><td>'figure'</td><td>A figure to contain an image, media or graphic that you wish to be floated alongside the main text column.</td></tr>
+</table>
+
+
+Gliss is primarily designed to help out with math by providing a few mixins that set the width constraints and alignment on elements.
+
+The primary mixin you will use is `grid()` and you can pass the small and large constraints to it. If we wanted `foo` to be 6 columns wide at small sizes and 3 columns wide at the largest sizes then we would write it like this:
+
+```scss
+foo {
+	@include grid(6,3);
+}
+```
+
+This will generate the following CSS:
+
+```css
+figure._quarter {
+	width: 19.25rem;
+	max-width: calc(50% + -0.5rem);
+}
+```
+
+For alignment, you can choose left, right, or center by using the following mixins:
+
+```scss
+foo {
+	@include grid-center();
+	@include grid-left();
+	@include grid-right();
+}
+```
+
+If you are generating Gliss modules, then use the module definitions you have created with your variables.
+
+First off, the markup should be structure something like this:
+
+```html
+<article>
+  <figure></figure>
+  <div class="text"></div>
+  <figure></figure>
+  <div class="text"></div>
+</article>
+```
+
+Gliss figures have a number of modifiers available. `._half`, `._third`, and `._quarter` set elements to be half width, a quarter width, or one third the width of the page at the max width of the layout. All three degrade to half width. `._left` and `._right` will float these figures left or right.
+
+`._hang` is an additional figure modifier that will align the figure with the main text column and also push it flush with the side of the article. You can use `._left` and `._right` with hanging figures.
+
+This framework is intended as a barebones toolset, not something that will solve all your layout problems for you. It is intended as a beginning to solving some tough problems, not an end and it’s likely that you will find value in reworking components to fit your needs.
 
 ## Authors
 
-List of Vox staff who authored the code.
+[Scott Kellum](https://github.com/scottkellum)
 
 ## Contribute
 
@@ -24,7 +125,7 @@ This is an active project and we encourage contributions. [Please review our gui
 
 ## License
 
-Copyright (c) 2014, Vox Media, Inc.
+Copyright (c) 2015, Vox Media, Inc.
 All rights reserved.
 
 BSD license

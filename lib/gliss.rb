@@ -7,7 +7,7 @@ require 'compass'
 # This tells Compass what your Compass extension is called, and where to find
 #  its files
 extension_path = File.expand_path(File.join(File.dirname(__FILE__), ".."))
-Compass::Frameworks.register('gliss', :path => extension_path)
+Compass::Frameworks.register('gliss-layout', :path => extension_path)
 
 # Version and date of version for your Compass extension.
 # Replace Gliss with the name of your extension

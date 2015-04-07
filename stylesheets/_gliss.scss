@@ -1,7 +1,7 @@
 // Max width of content container. This must be a fixed width (em or px)
-$max-width:         80em      !default;
+$max-width:         80rem      !default;
 // Gutter width, must be same units as $max-width.
-$gutter:            1em       !default;
+$gutter:            1rem       !default;
 // Margins on either side of the content container.
 $margin:            4%        !default;
 // Number of columns the grid is divided into.
