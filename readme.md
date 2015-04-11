@@ -42,13 +42,13 @@ First, you are going to want to configure Gliss. Here are the main variables to 
 <tr>
 <th>Variable</th><th>Default</th><th>Description</th></tr>
 <tr>
-<td>$max-width</td><td>80rem</td><td>Max width of content container. This must be a fixed width (em, rem or px)</td></tr>
+<td>$gliss-max-width</td><td>80rem</td><td>Max width of content container. This must be a fixed width (em, rem or px)</td></tr>
 <tr>
-<td>$gutter</td><td>1rem</td><td>Gutter width, must be same units as $max-width.</td></tr>
+<td>$gliss-gutter</td><td>1rem</td><td>Gutter width, must be same units as $max-width.</td></tr>
 <tr>
-<td>$margin</td><td>4%</td><td>Margins on either side of the content container.</td></tr>
+<td>$gliss-margin</td><td>4%</td><td>Margins on either side of the content container.</td></tr>
 <tr>
-<td>$cols</td><td>12</td><td>Number of columns the grid is divided into.</td></tr>
+<td>$gliss-cols</td><td>12</td><td>Number of columns the grid is divided into.</td></tr>
 </table>
 
 So far this just provides you with a basic toolset, but if you want to have something more out of the box to work with, set `$gliss-modules` to `true` and define these variables as needed:
@@ -69,11 +69,11 @@ So far this just provides you with a basic toolset, but if you want to have some
 
 Gliss is primarily designed to help out with math by providing a few mixins that set the width constraints and alignment on elements.
 
-The primary mixin you will use is `grid()` and you can pass the small and large constraints to it. If we wanted `foo` to be 6 columns wide at small sizes and 3 columns wide at the largest sizes then we would write it like this:
+The primary mixin you will use is `gliss()` and you can pass the small and large constraints to it. If we wanted `foo` to be 6 columns wide at small sizes and 3 columns wide at the largest sizes then we would write it like this:
 
 ```scss
 foo {
-	@include grid(6,3);
+	@include gliss(6,3);
 }
 ```
 
@@ -90,9 +90,9 @@ For alignment, you can choose left, right, or center by using the following mixi
 
 ```scss
 foo {
-	@include grid-center();
-	@include grid-left();
-	@include grid-right();
+	@include gliss-center();
+	@include gliss-left();
+	@include gliss-right();
 }
 ```
 

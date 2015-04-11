@@ -1,5 +1,5 @@
 {
   "name": "gliss",
-  "description": "Gliss tk tk tk.",
+  "description": "A constraint based responsive grid system.",
   "tags": ["design", "grid", "layout"]
 }

@@ -1,11 +1,11 @@
 // Max width of content container. This must be a fixed width (em or px)
-$max-width:         80rem;
+$gliss-max-width:         80rem;
 // Gutter width, must be same units as $max-width.
-$gutter:            1rem;
+$gliss-gutter:            1rem;
 // Margins on either side of the content container.
-$margin:            4%;
+$gliss-margin:            4%;
 // Number of columns the grid is divided into.
-$cols:              12;
+$gliss-cols:              12;
 
 // Chose to write gliss classes.
 $gliss-modules:    true;
@@ -79,8 +79,8 @@ a:focus {
   position: fixed;
   top: 0;
   bottom: 0;
-  left: $margin;
-  right: $margin;
+  left: $gliss-margin;
+  right: $gliss-margin;
   z-index: -1;
 }
 
@@ -91,13 +91,13 @@ a:focus {
   width: 100%;
   margin: 0 0 0 50%;
   transform: translateX(-50%);
-  max-width: $max-width;
+  max-width: $gliss-max-width;
   div {
     height: 100vh;
     background-color: #FAFAFA;
-    width: calc(#{percentage(1/12)} - #{$gutter * 11 / 12});
+    width: calc(#{percentage(1/12)} - #{$gliss-gutter * 11 / 12});
     float: left;
-    margin-left: $gutter;
+    margin-left: $gliss-gutter;
     &:first-child {
       margin-left: 0;
     }

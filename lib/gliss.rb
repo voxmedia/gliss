@@ -16,7 +16,7 @@ Compass::Frameworks.register('gliss-layout', :path => extension_path)
 #    a prerelease version
 #  Date is in the form of YYYY-MM-DD
 module Gliss
-  VERSION = "0.0.0"
+  VERSION = "0.1.0"
   DATE = "2015-04-06"
 end
 

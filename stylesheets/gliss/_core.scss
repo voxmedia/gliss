@@ -1,52 +1,52 @@
 // Non-configurable variables for internal use:
 
 // Find the width of the margins within the context of the container
-$margin-inv: (100% / (100 - $margin * 2) * $margin);
+$gliss-margin-inv: (100% / (100 - $gliss-margin * 2) * $gliss-margin);
 
 
 // Upper limit for elements on the grid. This is a fixed width.
 @function grid-max(
     $max:$max,
-    $cols:$cols,
-    $max-width:$max-width,
-    $gutter:$gutter
+    $gliss-cols:$gliss-cols,
+    $gliss-max-width:$gliss-max-width,
+    $gliss-gutter:$gliss-gutter
   ) {
 
   // Total width of the columns minus the gutters
-  $cols-max-width: $max-width - ($gutter * ($cols - 1));
+  $gliss-cols-max-width: $gliss-max-width - ($gliss-gutter * ($gliss-cols - 1));
   // Find the max width of a simgle column as a fixed width.
-  $col-max-width: ($cols-max-width / $cols);
+  $col-max-width: ($gliss-cols-max-width / $gliss-cols);
 
   // All the columns plus gutters.
-  @return ($col-max-width * $max) + ($gutter * ($max - 1));
+  @return ($col-max-width * $max) + ($gliss-gutter * ($max - 1));
 }
 
 // The lower constraint, how small can this get?
 @function grid-min(
     $min:$min,
-    $cols:$cols,
-    $max-width:$max-width,
-    $gutter:$gutter
+    $gliss-cols:$gliss-cols,
+    $gliss-max-width:$gliss-max-width,
+    $gliss-gutter:$gliss-gutter
   ) {
 
   // Make sure not to divide by zero.
-  @if $min < $cols {
-    @return calc(#{(100% / $cols) * $min} + #{$gutter * ($min - $cols) / ($cols)});
+  @if $min < $gliss-cols {
+    @return calc(#{(100% / $gliss-cols) * $min} + #{$gliss-gutter * ($min - $gliss-cols) / ($gliss-cols)});
   }
   @return 100%;
 }
 
-@mixin grid(
+@mixin gliss(
     $min:false,     // Lower limit (compiles to % constraint)
     $max:false,     // Upper limit (compiles to fixed constraint)
-    $cols:$cols,
-    $max-width:$max-width,
-    $gutter:$gutter
+    $gliss-cols:$gliss-cols,
+    $gliss-max-width:$gliss-max-width,
+    $gliss-gutter:$gliss-gutter
   ) {
 
   // Write max width first as it is mapped to just width.
   @if $max {
-    width: grid-max($max,$cols,$max-width,$gutter);
+    width: grid-max($max,$gliss-cols,$gliss-max-width,$gliss-gutter);
   } @else {
     // If unspecified, use 100% to ensure the min-width is fulled.
     width: 100%;
@@ -57,7 +57,7 @@ $margin-inv: (100% / (100 - $margin * 2) * $margin);
   // the elements will hit higher %s.
   // This is the upper bounds on that % but on a smaller screen.
   @if $min {
-    max-width: grid-min($min,$cols,$max-width,$gutter);
+    max-width: grid-min($min,$gliss-cols,$gliss-max-width,$gliss-gutter);
   }
 }
 
@@ -65,33 +65,33 @@ $margin-inv: (100% / (100 - $margin * 2) * $margin);
 // Alignment
 
 // Center a thing
-@mixin grid-center {
+@mixin gliss-center {
   margin-left: auto;
   margin-right: auto;
 }
 
 // Align right
-@mixin grid-right(
+@mixin gliss-right(
     $offset:0
   ) {
 
   @if $offset != 0 {
-    $offset: calc(#{(100% / $cols) * $offset} + #{($gutter * ($offset - $cols) / ($cols)) + ($gutter)});
+    $offset: calc(#{(100% / $gliss-cols) * $offset} + #{($gliss-gutter * ($offset - $gliss-cols) / ($gliss-cols)) + ($gliss-gutter)});
   }
 
   float: right;
-  margin: 0 $offset 0 $gutter;
+  margin: 0 $offset 0 $gliss-gutter;
 }
 
 // Align left
-@mixin grid-left(
+@mixin gliss-left(
     $offset:0
   ) {
 
   @if $offset != 0 {
-    $offset: calc(#{(100% / $cols) * $offset} + #{($gutter * ($offset - $cols) / ($cols)) + ($gutter)});
+    $offset: calc(#{(100% / $gliss-cols) * $offset} + #{($gliss-gutter * ($offset - $gliss-cols) / ($gliss-cols)) + ($gliss-gutter)});
   }
 
   float: left;
-  margin: 0 $gutter 0 $offset;
+  margin: 0 $gliss-gutter 0 $offset;
 }
